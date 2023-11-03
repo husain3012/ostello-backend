@@ -8,8 +8,6 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ProductsModule,
-    CartItemsModule,
     ConfigModule.forRoot({
       envFilePath: ['.env.local', '.env'],
       isGlobal: true,
@@ -24,8 +22,14 @@ import { ConfigModule } from '@nestjs/config';
       autoLoadEntities: true, // models will be loaded automatically
       synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
     }),
+    ProductsModule,
+    CartItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+
+console.log('DATABASE_HOST', process.env.DATABASE_HOST);
+console.log('DATABASE_PORT', parseInt(process.env.DATABASE_PORT));
+console.log('DATABASE_USERNAME', process.env.DATABASE_USERNAME);
