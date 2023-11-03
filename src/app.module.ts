@@ -18,7 +18,7 @@ import { ConfigModule } from '@nestjs/config';
       port: parseInt(process.env.DATABASE_PORT),
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
-      database: 'ostello', // name of our database,
+      database: process.env.DATABASE_NAME || 'postgres',
       autoLoadEntities: true, // models will be loaded automatically
       synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
     }),
@@ -33,3 +33,4 @@ export class AppModule {}
 console.log('DATABASE_HOST', process.env.DATABASE_HOST);
 console.log('DATABASE_PORT', parseInt(process.env.DATABASE_PORT));
 console.log('DATABASE_USERNAME', process.env.DATABASE_USERNAME);
+console.log('DATABASE_NAME', process.env.DATABASE_NAME);
